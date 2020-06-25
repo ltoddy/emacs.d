@@ -4,5 +4,5 @@
 
 Usage:
 
-> git clone https://github.com/ltoddy/emacs.git ~/.emacs.d
+> git clone https://github.com/ltoddy/emacs.d.git ~/.emacs.d
 

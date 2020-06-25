@@ -18,8 +18,6 @@
 ;; 关闭文件滑动控件
 (scroll-bar-mode -1)
 
-(electric-indent-mode -1)
-
 ;; 更改光标格式
 (setq cursor-type (quote bar))
 
@@ -43,6 +41,8 @@
 ;; 更改显示字体大小 16pt
 ;; see more: https://stackoverflow.com/questions/294664/how-to-set-the-font-size-in-emacs
 (set-face-attribute 'default nil :height 120)
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
