@@ -1,6 +1,7 @@
-
 # emacs.d
 脱离vim邪教，入坑emacs。
+
+require: *emacs major version >= 24
 
 Usage:
 
