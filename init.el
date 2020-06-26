@@ -1,5 +1,17 @@
-;; 启动emacs时，窗口大小为全屏
-(setq initial-frame-alist (quote ((fullscreen . maximized))))
+;; 启动emacs时，设置窗口大小
+(if (not (eq window-system nil))
+    (progn
+      ;; top, left ... must be integer
+      (add-to-list 'default-frame-alist
+                   (cons 'top  (/ (x-display-pixel-height) 5)))
+      (add-to-list 'default-frame-alist
+                   (cons 'left (/ (x-display-pixel-width) 5)))
+      (add-to-list 'default-frame-alist
+                   (cons 'height (/ (* 3 (x-display-pixel-height))
+                                    (* 5 (frame-char-height)))))
+      (add-to-list 'default-frame-alist
+                   (cons 'width (/ (* 3 (x-display-pixel-width))
+                                   (* 5 (frame-char-width)))))))
 
 ;; config plugin source
 (when (>= emacs-major-version 24)
