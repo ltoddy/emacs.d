@@ -1,41 +1,11 @@
-# Compiled
-*.elc
-
-# Packaging
-.cask
-
-# Backup files
 *~
-
-# Undo-tree save-files
-*.~undo-tree
-
-.recentf
-
-server/
-
-auto-save-list/
-
-eshell/
-
-*.???~
-*.??~
-
-recentf
-
-ido.last~
-
+places
+\.recentf
+\.smex-items
 ido.last
-
-ac-comphist.dat
-
-*~
-
-bookmarks
-
-.mc-lists.el
-
-#ido.last
-
+projectile-bookmarks.eld
+projectile.cache
+auto-save-list
+backups
 elpa/
-
+eshell

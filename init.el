@@ -31,8 +31,14 @@
 			  smartparens
 			  exec-path-from-shell
 			  nyan-mode
+			  lsp-mode
+			  eglot
+			  flycheck-rust
+			  lsp-ui
+			  company-lsp
+			  rust-mode
 			  ;; ---- Themes ----
-			  monokai-theme
+			  atom-one-dark-theme
 			  ) "Default packages")
 
 (setq package-selected-packages ltoddy/packages)
@@ -50,6 +56,9 @@
       (package-install pkg))))
 
 (setq shell-file-name (executable-find "/bin/zsh"))
+;; 当系统是Mac OS的时候，初始化这个插件
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 ;;(setenv "PATH" "~/.cargo/bin:~/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin")
 
@@ -77,9 +86,10 @@
 
 (global-company-mode t)
 
-;; 更改显示字体大小 12pt
+;; 更改显示字体大小 11pt
 ;; see more: https://stackoverflow.com/questions/294664/how-to-set-the-font-size-in-emacs
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 110)
+(set-default-font "Monaco")
 
 ;; 设置删除功能为，当选中一段文字之后输入一个字符就会替换掉选中的文字
 (delete-selection-mode 1)
@@ -90,7 +100,8 @@
 (global-hl-line-mode 1)
 
 ;; 初始化主题
-(load-theme 'monokai t)
+(require 'atom-one-dark-theme)
+
 
 ;; 以下开启插件
 ;; 例如你在某一行代码后面敲了很多个空格，那么你按一下删除，就空格全部删除了
@@ -123,10 +134,11 @@
 (nyan-mode t)
 
 
-;; 当系统是Mac OS的时候，初始化这个插件
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
 
+;; Rusr settings
+(require 'rust-mode)
+(setq rust-format-on-save t)
+(define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
 
 
 (custom-set-variables
@@ -136,12 +148,15 @@
  ;; If there is more than one, they won't work right.
  '(company-idle-delay 0.1)
  '(company-minimum-prefix-length 1)
+ '(custom-safe-themes
+   (quote
+    ("d1af5ef9b24d25f50f00d455bd51c1d586ede1949c5d2863bef763c60ddf703a" default)))
  '(nyan-animate-nyancat t)
- '(nyan-wavy-trail t)
  '(nyan-bar-length 35)
+ '(nyan-wavy-trail t)
  '(package-selected-packages
    (quote
-    (smartparens nyan-mode company))))
+    (atom-dark-theme company-lsp lsp-ui flycheck-rust atom-one-dark-theme eglot lsp-mode rust-mode smartparens nyan-mode company))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
