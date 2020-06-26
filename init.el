@@ -18,6 +18,7 @@
 			  counsel
 			  smartparens
 			  exec-path-from-shell
+			  nyan-mode
 			  ;; ---- Themes ----
 			  monokai-theme
 			  ) "Default packages")
@@ -71,7 +72,7 @@
 ;; 设置删除功能为，当选中一段文字之后输入一个字符就会替换掉选中的文字
 (delete-selection-mode 1)
 
-(add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
+(show-paren-mode t)
 
 ;; 高亮当前行
 (global-hl-line-mode 1)
@@ -106,6 +107,9 @@
 (require 'smartparens-config)
 (smartparens-global-mode t)
 
+(require 'nyan-mode)
+(nyan-mode t)
+
 
 ;; 当系统是Mac OS的时候，初始化这个插件
 (when (memq window-system '(mac ns x))
@@ -120,6 +124,9 @@
  ;; If there is more than one, they won't work right.
  '(company-idle-delay 0.1)
  '(company-minimum-prefix-length 1)
+ '(nyan-animate-nyancat t)
+ '(nyan-wavy-trail t)
+ '(nyan-bar-length 35)
  '(package-selected-packages
    (quote
     (smartparens nyan-mode company))))
