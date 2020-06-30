@@ -1,3 +1,10 @@
+(add-to-list 'load-path "~/.emacs.d/lisp")
+
+(require 'init-packages)
+
+;; 去掉声音
+(setq ring-bell-function 'ignore)
+
 ;; 启动emacs时，设置窗口大小
 (if (not (eq window-system nil))
     (progn
@@ -5,62 +12,15 @@
       (add-to-list 'default-frame-alist
                    (cons 'top  (/ (x-display-pixel-height) 5)))
       (add-to-list 'default-frame-alist
-                   (cons 'left (/ (x-display-pixel-width) 5)))
+                   (cons 'left (/ (x-display-pixel-width) 3)))
       (add-to-list 'default-frame-alist
                    (cons 'height (/ (* 3 (x-display-pixel-height))
                                     (* 5 (frame-char-height)))))
       (add-to-list 'default-frame-alist
                    (cons 'width (/ (* 3 (x-display-pixel-width))
-                                   (* 5 (frame-char-width)))))))
-
-;; config plugin source
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (setq package-archives '(("gnu" . "http://elpa.emacs-china.org/gnu/")
-			   ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
-;; --------------------------------------------
-
-(require 'cl)
-
-(defvar ltoddy/packages '(
-			  company
-			  hungry-delete
-			  swiper
-			  counsel
-			  smartparens
-			  exec-path-from-shell
-			  nyan-mode
-			  lsp-mode
-			  eglot
-			  flycheck-rust
-			  lsp-ui
-			  company-lsp
-			  rust-mode
-			  ;; ---- Themes ----
-			  atom-one-dark-theme
-			  ) "Default packages")
-
-(setq package-selected-packages ltoddy/packages)
-
-(defun ltoddy/packages-installed-p ()
-  (loop for pkg in ltoddy/packages
-	when (not (package-installed-p pkg)) do (return nil)
-	finally (return t)))
-
-(unless (ltoddy/packages-installed-p)
-  (message "%s" "Refreshing package database...")
-  (package-refresh-contents)
-  (dolist (pkg ltoddy/packages)
-    (when (not (package-installed-p pkg))
-      (package-install pkg))))
+                                   (* 8 (frame-char-width)))))))
 
 (setq shell-file-name (executable-find "/bin/zsh"))
-;; 当系统是Mac OS的时候，初始化这个插件
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
-
-;;(setenv "PATH" "~/.cargo/bin:~/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin")
 
 ;; 关闭工具栏，tool-bar-mode 即为一个 Minor Mode
 (tool-bar-mode -1)
@@ -74,9 +34,6 @@
 ;; 显示行号
 (global-linum-mode 1)
 
-;; 关闭自动生成备份文件
-(setq make-backup-files nil)
-
 ;; 更改光标的样式
 ;; see more: https://stackoverflow.com/questions/18172728/the-difference-between-setq-and-setq-default-in-emacs-lisp
 (setq-default cursor-type 'bar)
@@ -84,7 +41,8 @@
 ;; 关闭启动帮助画面
 (setq inhibit-splash-screen 1)
 
-(global-company-mode t)
+;; 当外部有修改文件的时候，自动加载
+(global-auto-revert-mode t)
 
 ;; 更改显示字体大小 11pt
 ;; see more: https://stackoverflow.com/questions/294664/how-to-set-the-font-size-in-emacs
@@ -99,19 +57,8 @@
 ;; 高亮当前行
 (global-hl-line-mode 1)
 
-;; 初始化主题
-(require 'atom-one-dark-theme)
 
 
-;; 以下开启插件
-;; 例如你在某一行代码后面敲了很多个空格，那么你按一下删除，就空格全部删除了
-(require 'hungry-delete)
-(global-hungry-delete-mode t)
-
-
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
-(setq enable-recursive-minibuffers t)
 ;; enable this if you want `swiper' to use it
 ;; (setq search-default-mode #'char-fold-to-regexp)
 (global-set-key "\C-s" 'swiper)
@@ -127,19 +74,23 @@
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
 
-(require 'smartparens-config)
-(smartparens-global-mode t)
+(abbrev-mode t)
+(define-abbrev-table 'global-abbrev-table
+  '(("lt" "ltoddy")))  ;; 输入lt然后空格，自动生成ltoddy
 
 (require 'nyan-mode)
 (nyan-mode t)
 
+;; disable auto-save and auto-backup
+(setq make-backup-files nil)
+(setq auto-save-default nil)
 
-
-;; Rusr settings
+;; Rust settings
 (require 'rust-mode)
 (setq rust-format-on-save t)
-(define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
-
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'rust-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -150,13 +101,13 @@
  '(company-minimum-prefix-length 1)
  '(custom-safe-themes
    (quote
-    ("d1af5ef9b24d25f50f00d455bd51c1d586ede1949c5d2863bef763c60ddf703a" default)))
+    ("5b7c31eb904d50c470ce264318f41b3bbc85545e4359e6b7d48ee88a892b1915" "a06658a45f043cd95549d6845454ad1c1d6e24a99271676ae56157619952394a" "939ea070fb0141cd035608b2baabc4bd50d8ecc86af8528df9d41f4d83664c6a" "123a8dabd1a0eff6e0c48a03dc6fb2c5e03ebc7062ba531543dfbce587e86f2a" "d1af5ef9b24d25f50f00d455bd51c1d586ede1949c5d2863bef763c60ddf703a" default)))
  '(nyan-animate-nyancat t)
  '(nyan-bar-length 35)
  '(nyan-wavy-trail t)
  '(package-selected-packages
    (quote
-    (atom-dark-theme company-lsp lsp-ui flycheck-rust atom-one-dark-theme eglot lsp-mode rust-mode smartparens nyan-mode company))))
+    (popwin markdown-mode+ gruvbox-theme racer atom-dark-theme company-lsp lsp-ui flycheck-rust atom-one-dark-theme eglot lsp-mode rust-mode smartparens nyan-mode company))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
