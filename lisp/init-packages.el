@@ -1,3 +1,5 @@
+(provide 'init-packages)
+
 ;; 更换源
 (when (>= emacs-major-version 24)
   (require 'package)
@@ -22,7 +24,7 @@
 			  rust-mode
 			  popwin
 			  ;; ---- Themes ---ruvbox-theme
-			  gruvbox-dark-soft-theme
+			  gruvbox-theme
 			  )
   "Default packages")
 
@@ -57,7 +59,6 @@
 (require 'hungry-delete)
 (global-hungry-delete-mode t)
 
-(require 'smartparens-config)
 (smartparens-global-mode t)
 
 (ivy-mode 1)
@@ -69,4 +70,3 @@
 (require 'popwin)
 (popwin-mode t)
 
-(provide 'init-packages)
