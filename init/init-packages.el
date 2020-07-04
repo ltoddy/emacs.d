@@ -23,6 +23,7 @@
 			  company-lsp
 			  rust-mode
 			  popwin
+			  paredit
 			  ;; ---- Themes ---ruvbox-theme
 			  gruvbox-theme
 			  )
@@ -69,4 +70,11 @@
 
 (require 'popwin)
 (popwin-mode t)
+
+(autoload 'paredit-mode "paredit"
+  "Minor mode for pseudo-structurally editing Lisp code."
+  t)
+
+(require 'parenface)
+(set-face-foreground 'paren-face "DimGray")
 

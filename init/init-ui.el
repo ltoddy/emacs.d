@@ -23,7 +23,7 @@
 (global-hl-line-mode 1)
 ;; 更改显示字体大小 11pt
 ;; see more: https://stackoverflow.com/questions/294664/how-to-set-the-font-size-in-emacs
-(set-face-attribute 'default nil :height 110)
+(set-face-attribute 'default nil :height 120)
 (set-default-font "Monaco")
 ;; 显示行号
 (global-linum-mode 1)
@@ -44,4 +44,3 @@
 ;; nyan cat
 (require 'nyan-mode)
 (nyan-mode t)
-

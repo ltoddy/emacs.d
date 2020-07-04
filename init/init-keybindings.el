@@ -15,3 +15,5 @@
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
+(global-set-key (kbd "C-c C-k") 'comint-clear-buffer)
+
