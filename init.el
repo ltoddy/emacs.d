@@ -1,18 +1,20 @@
-(add-to-list 'load-path "~/.emacs.d/init/")
-(add-to-list 'load-path "~/.emacs.d/ltoddy-plugins/")
+;; -*- lexical-binding: t -*-
+(setq gc-cons-threshold 100000000) ;; 指定了垃圾回收前允许有多少字节的consing
 
-(require 'init-packages)
-(require 'init-ui)
-(require 'init-better-defaults)
-(require 'init-keybindings)
+(require 'package) ;; 更换源
+(package-initialize)
+(setq package-archives '(("gnu" . "http://elpa.zilongshanren.com/gnu/")
+			 ("melpa" . "http://elpa.zilongshanren.com/melpa/")))
+(when (not package-archive-contents) ;; 防止反复调用 package-refresh-contents 会影响加载速
+  (package-refresh-contents))
 
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)
 
-(load-file custom-file)
-
-;; Rust settings
-(require 'rust-mode)
-(setq rust-format-on-save t)
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'rust-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
+(require 'init-packages) ;;
+(require 'init-better-defaults) ;; 增强内置功能
+(require 'init-keybinding) ;; 快捷键绑定
+(require 'init-ui) ;;
+(require 'init-better-defaults) ;; 让内置功能更好用
+(require 'init-org) ;;
