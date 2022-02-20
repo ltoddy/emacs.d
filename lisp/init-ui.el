@@ -4,7 +4,7 @@
 
 ;; (toggle-frame-maximized) ;; 启动emacs最大化窗口
 (set-frame-font "Monaco" nil t) ;; 设置字体 Cousine for Powerline
-(set-face-attribute 'default nil :height 100) ;; 更改字体大小
+(set-face-attribute 'default nil :height 110) ;; 更改字体大小
 (scroll-bar-mode -1) ;; 不显示scroll bar
 (global-hl-line-mode 1) ;; 高亮当前行
 (global-linum-mode 1) ;; 显示行号

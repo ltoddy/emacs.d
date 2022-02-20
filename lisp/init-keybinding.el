@@ -1,4 +1,5 @@
 ;; -*- lexical-binding: t -*-
+
 (provide 'init-keybinding)
 
 (defun open-init-file ()
@@ -15,6 +16,8 @@
 (global-set-key (kbd "s-w") 'delete-window) ;; <command> + w 多窗口下,关闭当前窗口
 
 (global-set-key (kbd "C-x b") 'consult-buffer) ;; 打开consult buffer (管理buffer的)
+(global-set-key (kbd "s-f") 'consult-line) ;; 搜索
+
 
 (global-set-key (kbd "C-h C-f") 'find-function)
 (global-set-key (kbd "C-h C-v") 'find-variable)
@@ -24,7 +27,6 @@
 (global-set-key (kbd "s-c") 'kill-ring-save) ;; 
 (global-set-key (kbd "s-b") 'consult-imenu)
 (global-set-key (kbd "C-;") 'embark-act)
-(global-set-key (kbd "C-s") 'consult-line)
 (global-set-key (kbd "M-s-l") 'indent-region)
 
 ;; keyboard-quit

@@ -20,10 +20,10 @@
 (package-install 'embark)
 (setq prefix-help-command 'embark-prefix-help-command)
 
-(package-install 'consult) ;; 文件内搜索和函数定义跳转 <control> + s
-
 (package-install 'nyan-mode)
 (nyan-mode t)
+
+(package-install 'consult) ;; 文件内搜索和函数定义跳转 <control> + s
 
 (package-install 'magit) ; git管理工具
 
@@ -45,5 +45,5 @@
 	  `((left . ,(car posn))
 	    (top . ,(cdr posn))))))
 
-;; (package-install 'doom-themes)
-;; (load-theme 'doom-city-lights t)
+(package-install 'doom-themes)
+(load-theme 'doom-city-lights t)
