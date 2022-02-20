@@ -22,6 +22,8 @@
 
 (package-install 'nyan-mode)
 (nyan-mode t)
+(setq nyan-animation-frame-interval 0.1)
+(setq nyan-wavy-trail t)
 
 (package-install 'consult) ;; 文件内搜索和函数定义跳转 <control> + s
 
@@ -47,3 +49,5 @@
 
 (package-install 'doom-themes)
 (load-theme 'doom-city-lights t)
+
+(package-install 'lsp-mode)

@@ -18,15 +18,14 @@
 (global-set-key (kbd "C-x b") 'consult-buffer) ;; 打开consult buffer (管理buffer的)
 (global-set-key (kbd "s-f") 'consult-line) ;; 搜索
 
-
 (global-set-key (kbd "C-h C-f") 'find-function)
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
 (global-set-key (kbd "C-h C-f") 'find-function)
 
 (global-set-key (kbd "s-c") 'kill-ring-save) ;; 
-(global-set-key (kbd "s-b") 'consult-imenu)
-(global-set-key (kbd "C-;") 'embark-act)
+;; (global-set-key (kbd "s-b") 'consult-imenu)
+(global-set-key (kbd "s-b") 'embark-act) ;; 按下会车跳转到定义的位置
 (global-set-key (kbd "M-s-l") 'indent-region)
 
 ;; keyboard-quit
