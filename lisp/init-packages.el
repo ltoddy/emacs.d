@@ -26,3 +26,24 @@
 (nyan-mode t)
 
 (package-install 'magit) ; git管理工具
+
+(package-install 'posframe) ;; posframe can pop up a frame at point
+(require 'posframe)
+
+(package-install 'mini-frame) ;; https://github.com/muffinmad/emacs-mini-frame
+(mini-frame-mode t)
+;; (custom-set-variables '(mini-frame-show-parameters
+;; 			'((top . 0.3)
+;; 			  (width . 0.5)
+;; 			  (left . 0.5))))
+
+;; pop up minibuffer at the cursor position
+(setq mini-frame-show-parameters
+      (lambda ()
+	(let* ((info (posframe-poshandler-argbuilder))
+	       (posn (posframe-poshandler-point-top-left-corner info)))
+	  `((left . ,(car posn))
+	    (top . ,(cdr posn))))))
+
+;; (package-install 'doom-themes)
+;; (load-theme 'doom-city-lights t)

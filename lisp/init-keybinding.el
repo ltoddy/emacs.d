@@ -26,3 +26,6 @@
 (global-set-key (kbd "C-;") 'embark-act)
 (global-set-key (kbd "C-s") 'consult-line)
 (global-set-key (kbd "M-s-l") 'indent-region)
+
+;; keyboard-quit
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit) ;; <control> + G 改成 esc 键

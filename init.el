@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t -*-
-(setq gc-cons-threshold 100000000) ;; 指定了垃圾回收前允许有多少字节的consing
+(setq gc-cons-threshold 100000000) ;; 指定了垃圾回收前允许有多少字节的consing, 用于提升打开emacs的速度
 
 (require 'package) ;; 更换源
 (package-initialize)
